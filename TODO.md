@@ -1,0 +1,2 @@
+- collision in main game
+- register
