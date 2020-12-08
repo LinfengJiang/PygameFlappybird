@@ -26,7 +26,7 @@ while gameing:
                 #stop game
                 gameing = False
         #and if someone click the quit button or any other opeartion
-        if event.type == QUIT:
+        if event.type == pygame.locals.QUIT:
             #stop game
             gameing = False
 #跟傻逼解释半天不知道他们能不能看懂

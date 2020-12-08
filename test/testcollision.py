@@ -15,8 +15,8 @@ while gameing:
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 gameing = False
-        # if event.type == quit():
-        #     gameing = False
+        if event.type == pygame.locals.QUIT:
+            gameing = False
 
     #background color
     screen.fill((255,255,0))
@@ -30,7 +30,7 @@ while gameing:
     # rect3 = test_img.get_rect()   #trying
 
     pygame.draw.rect(screen,(32,192,32),rect1)
-    pygame.draw.rect(screen, (255, 255, 0), rect2)
+    pygame.draw.rect(screen, (255, 255, 255), rect2)
     # pygame.draw.rect(screen,(0,0,0),rect3)
     screen.blit(test_img,rect2)
 

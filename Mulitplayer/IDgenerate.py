@@ -10,8 +10,8 @@ def getSN():
 
 def encr(str):
     m = hashlib.md5()
-    m.update(str.encode(encoding='utf-8'))
-    n = m.hexdigest()
+    m.update(str.encode(encoding='utf-8'))   #encoding
+    n = m.hexdigest()    #转换为16进制字符串
     return n
 
 def codegen():
