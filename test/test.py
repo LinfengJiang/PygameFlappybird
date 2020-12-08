@@ -96,14 +96,14 @@ while spielaktiv:
 
     pygame.draw.rect(screen,(32,192,32),tupleAU)
     pygame.draw.rect(screen,(32,192,32),tupleAD)
-    pygame.draw.rect(screen, (32, 192, 32), tupleBU)
-    pygame.draw.rect(screen, (32, 192, 32), tupleBD)
-    pygame.draw.rect(screen, (32, 192, 32), tupleCU)
-    pygame.draw.rect(screen, (32, 192, 32), tupleCD)
-    pygame.draw.rect(screen, (32, 192, 32), tupleDU)
-    pygame.draw.rect(screen, (32, 192, 32), tupleDD)
-    pygame.draw.rect(screen, (32, 192, 32), tupleEU)
-    pygame.draw.rect(screen, (32, 192, 32), tupleED)
+    pygame.draw.rect(screen,(32, 192, 32), tupleBU)
+    pygame.draw.rect(screen,(32, 192, 32), tupleBD)
+    pygame.draw.rect(screen,(32, 192, 32), tupleCU)
+    pygame.draw.rect(screen,(32, 192, 32), tupleCD)
+    pygame.draw.rect(screen,(32, 192, 32), tupleDU)
+    pygame.draw.rect(screen,(32, 192, 32), tupleDD)
+    pygame.draw.rect(screen,(32, 192, 32), tupleEU)
+    pygame.draw.rect(screen,(32, 192, 32), tupleED)
 
 # Fenster aktualisieren
     pygame.display.flip()
