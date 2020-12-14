@@ -10,6 +10,8 @@
 ## 0.0.5
     add scoreboard funktion and test the database funktion
     Now can be upload the last score into database
+## 0.0.6
+    add requirements.txt
 
 ### Quelle:
     https://www.jinx.com/pages/cyberpunk
