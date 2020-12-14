@@ -16,6 +16,8 @@
     - ~~main.py~~
     - fix some bug
     - remake README
+* 0.0.8
+    - modify the name of rect
 
 ## Quelle:
     - https://www.jinx.com/pages/cyberpunk

@@ -67,7 +67,7 @@ while spielaktiv:
 
     # vogel mit jede ein mal K_UP nach oben 10
     if pygame.key.get_pressed()[pygame.locals.K_UP]:
-        #调整下落速度
+        #调整上升速度
         y -= 2     # 10 ist zu Schwier ,testing....
 
     # vogel fallen immer
