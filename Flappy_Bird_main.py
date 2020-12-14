@@ -142,7 +142,7 @@ while spielaktiv:
     pygame.display.flip()
 
 # if Bird out screen,end game, und etwas ausdrüken
-    if y==480 or y<=0:
+    if y>=480 or y<=0:
         print('Try again')
         spielaktiv = False
         # pygame.quit()
