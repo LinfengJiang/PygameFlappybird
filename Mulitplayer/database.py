@@ -3,6 +3,7 @@ import pymysql
 def sql_exec(sql_command):
     #args address,username,password,databasename
     db = pymysql.connect("45.13.199.46","pygame","srcXaeYBpHtsR22b","pygame")
+    #seting a cursor for execute the SQL language
     cursor = db.cursor()
 
     # cursor.execute("SELECT VERSION()")
