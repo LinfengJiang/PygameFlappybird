@@ -1,6 +1,8 @@
 # Pygame
 import os, sys, pygame, pygame.locals,random
 
+import Mulitplayer.last_score as ls  # this funktion is use to upload the score into database
+
 # Initialisieren von PyGame
 pygame.init()
 
@@ -24,6 +26,8 @@ geschwendigkeit = 1
 x = 200
 y = 240
 
+# Score
+score = 0
 
 
 # wand_1_x ,jede Wand beginnt von rechts, Abstand 150 ,Wand Breite 50
@@ -63,7 +67,8 @@ while spielaktiv:
 
     # vogel mit jede ein mal K_UP nach oben 10
     if pygame.key.get_pressed()[pygame.locals.K_UP]:
-        y -= 10
+        #调整下落速度
+        y -= 2     # 10 ist zu Schwier ,testing....
 
     # vogel fallen immer
     else :
@@ -88,6 +93,18 @@ while spielaktiv:
     if a4 == -50:
         a4 = 750
         lD = random.choice(list_l)
+
+    # Scoreboard
+    # When bird pass the wall,
+    # that means the coordinates for the wall is C(brid) - thickness of walls
+    if a1 == 150:
+         score += 1
+    if a2 == 150:
+         score += 1
+    if a3 == 150:
+         score += 1
+    if a4 == 150:
+         score += 1
 
 
     tupleAU = pygame.Rect(a1,0,50,lA)
@@ -124,9 +141,10 @@ while spielaktiv:
 # Fenster aktualisieren
     pygame.display.flip()
 
-# if Bird out screen,end game
+# if Bird out screen,end game, und etwas ausdrüken
     if y==480 or y<=0:
-        break
+        print('Try again')
+        spielaktiv = False
         # pygame.quit()
 
 
@@ -136,8 +154,14 @@ while spielaktiv:
 # Bestimmen es, ob es kollidieren werden
     for i in list_tuple:
         a = pygame.Rect.colliderect(bird, i)
-        # whenn kollidieren enden game
+        # wenn kollidieren enden game
         if a == 1:
+            print('100G!! Overload!!!!')
             spielaktiv = False
+
+#Wenn end der Spielen , ausdrüken der letzt Punkte
+print('Your score is:',score)
+#upload the score into database
+ls.insert_last_score(score)
 
 pygame.quit()

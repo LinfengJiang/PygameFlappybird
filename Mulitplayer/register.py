@@ -8,6 +8,7 @@ def register(name):
     print(sql_command)
     db.sql_exec(sql_command)
 
+#Wenn dieser Programm auf den
 if __name__ == '__main__':
     name = input("Input Your Username")
     register(name)
