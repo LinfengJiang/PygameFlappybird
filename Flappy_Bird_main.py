@@ -33,7 +33,7 @@ score = 0
 # wand_1_x ,jede Wand beginnt von rechts, Abstand 150 ,Wand Breite 50
 a1 = 640
 
-# wand_2_x +250
+# wand_2_x +200
 a2 = 840
 
 # wand_3_x
@@ -142,7 +142,7 @@ while spielaktiv:
     pygame.display.flip()
 
 # if Bird out screen,end game, und etwas ausdrüken
-    if y==480 or y<=0:
+    if y>480 or y<=0:
         print('Try again')
         spielaktiv = False
         # pygame.quit()
