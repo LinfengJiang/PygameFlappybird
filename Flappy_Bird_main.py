@@ -2,6 +2,12 @@
 import os, sys, pygame, pygame.locals,random
 
 import Mulitplayer.last_score as ls  # this funktion is use to upload the score into database
+import Mulitplayer.register as reg  # this funktion is use to register an account into database
+
+try:
+    reg.register('test')   # regeister as ID 'test'
+except BaseException as e:
+    print(e)  # print any error
 
 # Initialisieren von PyGame
 pygame.init()

@@ -7,8 +7,8 @@ def insert_last_score(score):
     id = idgen.codegen()
     try:
         sql_command = 'UPDATE `pygame`.`flappybird` SET `LAST_SCORE` = \'%s\' WHERE `flappybird`.`ID` = \'%s\'' % (score,id)
-    except:
-        reg.register(name='test')
+    except BaseException as e:
+        print(e)
     print(sql_command)
     db.sql_exec(sql_command)
 

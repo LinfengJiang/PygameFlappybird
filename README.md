@@ -18,6 +18,8 @@
     - remake README
 * 0.0.8
     - modify the name of rect
+* 0.0.9
+    - fix some bug in batabase
 
 ## Quelle:
     - https://www.jinx.com/pages/cyberpunk
