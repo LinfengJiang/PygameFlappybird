@@ -1,15 +1,15 @@
-# Pygame Beispiel
-import os, sys, pygame, pygame.locals
+# Pygame
+import os, sys, pygame, pygame.locals,random
 
 # Initialisieren von PyGame
 pygame.init()
 
 
 # Fenster öffnen
-screen =pygame.display.set_mode((640, 480))
+screen = pygame.display.set_mode((640, 480))
 
 # Titel für Fensterkopf
-pygame.display.set_caption('Flapply Dot')
+pygame.display.set_caption('Flapply Bird')
 
 # Bildschirm Aktualisierungen einstellen
 clock = pygame.time.Clock()
@@ -17,28 +17,33 @@ clock = pygame.time.Clock()
 # solange die Variable True ist, soll das Spiel laufen
 spielaktiv = True
 
-
+# Wand Geschwendigkeit
+geschwendigkeit = 1
 
 # vogel koordinate_x_y
-x = 100
+x = 200
 y = 240
 
 
 
-# wand_1_x
-a1 = 800
+# wand_1_x ,jede Wand beginnt von rechts, Abstand 150 ,Wand Breite 50
+a1 = 640
 
-# wand_2_x
-a2 = 600
+# wand_2_x +250
+a2 = 840
 
 # wand_3_x
-a3 = 400
+a3 = 1040
 
 # wand_4_x
-a4 = 200
+a4 = 1240
 
-# wand_5_x
-a5 = 0
+# braucht ein random Lücke,so gibt ein random Wands Lange l
+list_l = [80,100,120,140, 160,180,200,220,240,260,280,300, 320]
+lA = random.choice(list_l)
+lB = random.choice(list_l)
+lC = random.choice(list_l)
+lD = random.choice(list_l)
 
 # Schleife Hauptprogramm
 while spielaktiv:
@@ -63,47 +68,47 @@ while spielaktiv:
     # vogel fallen immer
     else :
         if y > 0:
-            y += 1
-
+            y += 3
     # alle Wände immer nach links bewegen
-    a1 -= 1
-    a2 -= 1
-    a3 -= 1
-    a4 -= 1
-    a5 -= 1
-    # wenn Wand aus screen, nach rechts zurück
+    a1 -= geschwendigkeit
+    a2 -= geschwendigkeit
+    a3 -= geschwendigkeit
+    a4 -= geschwendigkeit
+
+    # wenn grans Wand aus screen, nach rechts zurück und gibt es ein neue Lücke
     if a1 == -50:
-        a1 = 640
+        a1 = 750
+        lA = random.choice(list_l)
     if a2 == -50:
-        a2 = 640
+        a2 = 750
+        lB = random.choice(list_l)
     if a3 == -50:
-        a3 = 640
+        a3 = 750
+        lC = random.choice(list_l)
     if a4 == -50:
-        a4 = 640
-    if a5 == -50:
-        a5 = 640
+        a4 = 750
+        lD = random.choice(list_l)
 
-    tupleAU = pygame.Rect(a1,0,50,150)
-    tupleAD = pygame.Rect(a1,300,50,180)
 
-    tupleBU = pygame.Rect(a2, 0, 50, 200)
-    tupleBD = pygame.Rect(a2, 300, 50, 200)
+    tupleAU = pygame.Rect(a1,0,50,lA)
+    tupleAD = pygame.Rect(a1,lA+100,50,380-lA)
 
-    tupleCU = pygame.Rect(a3, 0, 50, 150)
-    tupleCD = pygame.Rect(a3, 300, 50, 180)
+    tupleBU = pygame.Rect(a2, 0, 50, lB)
+    tupleBD = pygame.Rect(a2, lB+100, 50, 380-lB)
 
-    tupleDU = pygame.Rect(a4, 0, 50, 150)
-    tupleDD = pygame.Rect(a4, 300, 50, 180)
+    tupleCU = pygame.Rect(a3, 0, 50, lC)
+    tupleCD = pygame.Rect(a3, lC+100, 50, 380-lC)
 
-    tupleEU = pygame.Rect(a5, 0, 50, 150)
-    tupleED = pygame.Rect(a5, 300, 50, 180)
+    tupleDU = pygame.Rect(a4, 0, 50, lD)
+    tupleDD = pygame.Rect(a4, lD+100, 50,380-lD)
+
 
     # macht ein list, es hat alle tupel
-    list_tuple=[tupleAU,tupleAD,tupleBU,tupleBD,tupleCD,tupleCU,tupleDD,tupleDU,tupleED,tupleEU]
+    list_tuple=[tupleAU,tupleAD,tupleBU,tupleBD,tupleCD,tupleCU,tupleDD,tupleDU]
 
     screen.fill((64, 64, 64))  # Dark Gray
 
-    bird = pygame.Rect(x,y,10,10) #get a bird
+    bird = pygame.Rect(x,y,10,10) #get a bird( Quadrat)
     pygame.draw.rect(screen, (192, 32, 32), bird)
 
     pygame.draw.rect(screen,(32,192,32),tupleAU)
@@ -114,17 +119,13 @@ while spielaktiv:
     pygame.draw.rect(screen, (32, 192, 32), tupleCD)
     pygame.draw.rect(screen, (32, 192, 32), tupleDU)
     pygame.draw.rect(screen, (32, 192, 32), tupleDD)
-    pygame.draw.rect(screen, (32, 192, 32), tupleEU)
-    pygame.draw.rect(screen, (32, 192, 32), tupleED)
-
-
 
 
 # Fenster aktualisieren
     pygame.display.flip()
 
 # if Bird out screen,end game
-    if y==480:
+    if y==480 or y<=0:
         break
         # pygame.quit()
 
@@ -137,6 +138,6 @@ while spielaktiv:
         a = pygame.Rect.colliderect(bird, i)
         # whenn kollidieren enden game
         if a == 1:
-            spielaktiv=False
+            spielaktiv = False
 
 pygame.quit()
