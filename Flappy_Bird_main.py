@@ -107,35 +107,35 @@ while spielaktiv:
          score += 1
 
 
-    tupleAU = pygame.Rect(a1,0,50,lA)
-    tupleAD = pygame.Rect(a1,lA+100,50,380-lA)
+    rectA1 = pygame.Rect(a1,0,50,lA)
+    rectA2 = pygame.Rect(a1,lA+100,50,380-lA)
 
-    tupleBU = pygame.Rect(a2, 0, 50, lB)
-    tupleBD = pygame.Rect(a2, lB+100, 50, 380-lB)
+    rectB1 = pygame.Rect(a2, 0, 50, lB)
+    rectB2 = pygame.Rect(a2, lB+100, 50, 380-lB)
 
-    tupleCU = pygame.Rect(a3, 0, 50, lC)
-    tupleCD = pygame.Rect(a3, lC+100, 50, 380-lC)
+    rectC1 = pygame.Rect(a3, 0, 50, lC)
+    rectC2 = pygame.Rect(a3, lC+100, 50, 380-lC)
 
-    tupleDU = pygame.Rect(a4, 0, 50, lD)
-    tupleDD = pygame.Rect(a4, lD+100, 50,380-lD)
+    rectD1 = pygame.Rect(a4, 0, 50, lD)
+    rectD2 = pygame.Rect(a4, lD+100, 50,380-lD)
 
 
     # macht ein list, es hat alle tupel
-    list_tuple=[tupleAU,tupleAD,tupleBU,tupleBD,tupleCD,tupleCU,tupleDD,tupleDU]
+    list_tuple=[rectA1,rectA2,rectB1,rectB2,rectC1,rectC2,rectD1,rectD2]
 
     screen.fill((64, 64, 64))  # Dark Gray
 
     bird = pygame.Rect(x,y,10,10) #get a bird( Quadrat)
     pygame.draw.rect(screen, (192, 32, 32), bird)
 
-    pygame.draw.rect(screen,(32,192,32),tupleAU)
-    pygame.draw.rect(screen,(32,192,32),tupleAD)
-    pygame.draw.rect(screen, (32, 192, 32), tupleBU)
-    pygame.draw.rect(screen, (32, 192, 32), tupleBD)
-    pygame.draw.rect(screen, (32, 192, 32), tupleCU)
-    pygame.draw.rect(screen, (32, 192, 32), tupleCD)
-    pygame.draw.rect(screen, (32, 192, 32), tupleDU)
-    pygame.draw.rect(screen, (32, 192, 32), tupleDD)
+    pygame.draw.rect(screen,(32,192,32),rectA1)
+    pygame.draw.rect(screen,(32,192,32),rectA2)
+    pygame.draw.rect(screen, (32, 192, 32), rectB1)
+    pygame.draw.rect(screen, (32, 192, 32), rectB2)
+    pygame.draw.rect(screen, (32, 192, 32), rectC1)
+    pygame.draw.rect(screen, (32, 192, 32), rectC2)
+    pygame.draw.rect(screen, (32, 192, 32), rectD1)
+    pygame.draw.rect(screen, (32, 192, 32), rectD2)
 
 
 # Fenster aktualisieren
