@@ -109,13 +109,13 @@ while gameing:
     # Scoreboard
     # When bird pass the wall,
     # that means the coordinates for the wall is C(brid) - thickness of walls
-    if a1 == 150:
+    if a1 <= 150:
         score += 1
-    if a2 == 150:
+    if a2 <= 150:
         score += 1
-    if a3 == 150:
+    if a3 <= 150:
         score += 1
-    if a4 == 150:
+    if a4 <= 150:
         score += 1
 
     # coordinates for rect
