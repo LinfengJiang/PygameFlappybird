@@ -9,6 +9,7 @@ from pygame.locals import *
 import Mulitplayer.last_score as ls  # this funktion is use to upload the score into database
 import Mulitplayer.register as reg  # this funktion is use to register an account into database
 
+# register the ID
 try:
     reg.register('test')   # regeister as ID 'test'
 except BaseException as e:
@@ -20,10 +21,9 @@ import random
 #initizliation pygame
 pygame.init()
 #set resoultion
-#老子换个不常用的分辨率这傻逼总不能说是我抄的吧
 screen = pygame.display.set_mode((640,480))
 
-# Bildschirm Aktualisierungen einstellen
+# 刷新率，或者叫刷新速度  refresh rate
 clock = pygame.time.Clock()
 
 #set this variablen to mark when game is runing or not
@@ -93,16 +93,16 @@ while gameing:
     a4 -= geschwendigkeit
 
     # wenn grans Wand aus screen, nach rechts zurück und gibt es ein neue Lücke
-    if a1 == -50:
+    if a1 <= -50:
         a1 = 750
         lA = random.choice(list_l)
-    if a2 == -50:
+    if a2 <= -50:
         a2 = 750
         lB = random.choice(list_l)
-    if a3 == -50:
+    if a3 <= -50:
         a3 = 750
         lC = random.choice(list_l)
-    if a4 == -50:
+    if a4 <= -50:
         a4 = 750
         lD = random.choice(list_l)
 
@@ -118,6 +118,7 @@ while gameing:
     if a4 == 150:
         score += 1
 
+    # coordinates for rect
     rectA1 = pygame.Rect(a1, 0, 50, lA)
     rectA2 = pygame.Rect(a1, lA + 100, 50, 380 - lA)
 
@@ -156,7 +157,7 @@ while gameing:
         gameing = False
         # pygame.quit()
 
-    # Refresh-Zeiten festlegen
+    # set refresh rate as 60, same as normal screen refresh rate
     clock.tick(60)
 
     # Bestimmen es, ob es kollidieren werden
