@@ -5,8 +5,8 @@ import Mulitplayer.database as db
 def register(name):
     id = idgen.codegen()
     sql_command = 'INSERT INTO flappybird(ID,NAME) VALUES (\'%s\',\'%s\')' % (id,name)
-    print(sql_command)
-    db.sql_exec(sql_command)
+    #print(sql_command)
+    db.sql_modify(sql_command)
 
 #Wenn dieser Programm auf den
 if __name__ == '__main__':

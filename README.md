@@ -20,6 +20,9 @@
     - modify the name of rect
 * 0.0.9
     - fix some bug in batabase
+* 0.1.0
+    - add high_score.last_score funtion
+    - move main.py into test folder
 
 ## Quelle:
     - https://www.jinx.com/pages/cyberpunk

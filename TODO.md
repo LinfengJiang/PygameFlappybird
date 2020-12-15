@@ -1,2 +1,3 @@
 - collision in main game
 - register
+- scoreboard

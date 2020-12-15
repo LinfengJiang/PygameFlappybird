@@ -1,6 +1,6 @@
 import pymysql
 
-def sql_exec(sql_command):
+def sql_modify(sql_command):
     #args address,username,password,databasename
     db = pymysql.connect("45.13.199.46","pygame","srcXaeYBpHtsR22b","pygame")
     #seting a cursor for execute the SQL language
@@ -12,11 +12,27 @@ def sql_exec(sql_command):
 
     try:
         cursor.execute(sql_command)
-        db.commit()
-        data = cursor.fetchall()
-        print(data)
+        db.commit() #send to server
+        data = cursor.fetchall() #take the feedback
+        #print(data)
     except:
-        print("Error 11")
+        #print("Error 11")
         db.rollback()
 
     db.close()   #important
+
+def sql_search(sql_command):
+    #args address,username,password,databasename
+    db = pymysql.connect("45.13.199.46","pygame","srcXaeYBpHtsR22b","pygame")
+    #seting a cursor for execute the SQL language
+    cursor = db.cursor()
+
+    try:
+        cursor.execute(sql_command)
+        data = cursor.fetchone()
+        #print(data)
+    except BaseException as e:
+        print(e)
+
+    db.close()   #important
+    return data
