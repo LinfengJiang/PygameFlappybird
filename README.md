@@ -23,6 +23,8 @@
 * 0.1.0
     - add high_score.last_score funtion
     - move main.py into test folder
+* 0.1.1
+    - remake main.py
 
 ## Quelle:
     - https://www.jinx.com/pages/cyberpunk
