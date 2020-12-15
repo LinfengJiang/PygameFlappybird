@@ -13,10 +13,10 @@ def sql_modify(sql_command):
     try:
         cursor.execute(sql_command)
         db.commit() #send to server
-        data = cursor.fetchall() #take the feedback
+        #data = cursor.fetchall() #take the feedback
         #print(data)
     except:
-        #print("Error 11")
+        # rollback to start
         db.rollback()
 
     db.close()   #important
