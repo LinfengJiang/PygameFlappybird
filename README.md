@@ -25,6 +25,10 @@
     - move main.py into test folder
 * 0.1.1
     - remake main.py
+* 0.1.2
+    - Max score in scoreboard
+    - ini config file
+    - adjustable speed and other things on config file
 
 ## Quelle:
     - https://www.jinx.com/pages/cyberpunk

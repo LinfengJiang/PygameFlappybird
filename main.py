@@ -1,36 +1,39 @@
-#给某些不懂python还要bb的傻逼看的注释
-#import some pakcage from pygame
+# 给某些不懂python还要bb的傻逼看的注释
+# import some pakcage from pygame
 import pygame
-#import all funcktion from pygame.locals
+# import all funcktion from pygame.locals
 from pygame.locals import *
-#傻逼太多了，解释不过来
+# 傻逼太多了，解释不过来
+
+import read_ini
+
+conf = read_ini.conf_speed()
 
 import Mulitplayer.last_score as ls  # this funktion is use to upload the score into database
 import Mulitplayer.register as reg  # this funktion is use to register an account into database
 
 # register the ID
 try:
-    reg.register('test')   # regeister as ID 'test'
+    reg.register('test')  # regeister as ID 'test'
 except BaseException as e:
     print(e)  # print any error
 
 import random
 
-
-#initizliation pygame
+# initizliation pygame
 pygame.init()
-#set resoultion
-screen = pygame.display.set_mode((640,480))
+# set resoultion
+screen = pygame.display.set_mode((640, 480))
 
 # 刷新率，或者叫刷新速度  refresh rate
 clock = pygame.time.Clock()
 
-#set this variablen to mark when game is runing or not
+# set this variablen to mark when game is runing or not
 gameing = True
 
 # Wand Geschwendigkeit
-#值必须能被50整除
-geschwendigkeit = 1
+# 值必须能被50整除
+geschwendigkeit = conf.get('X_speed')  # get first value as wall speed
 
 # vogel koordinate_x_y
 x = 200
@@ -38,7 +41,6 @@ y = 240
 
 # Score
 score = 0
-
 
 # wand_1_x ,jede Wand beginnt von rechts, Abstand 150 ,Wand Breite 50
 a1 = 640
@@ -53,39 +55,38 @@ a3 = 1040
 a4 = 1240
 
 # braucht ein random Lücke,so gibt ein random Wands Lange l
-list_l = [80,100,120,140, 160,180,200,220,240,260,280,300, 320]
+list_l = [80, 100, 120, 140, 160, 180, 200, 220, 240, 260, 280, 300, 320]
 lA = random.choice(list_l)
 lB = random.choice(list_l)
 lC = random.choice(list_l)
 lD = random.choice(list_l)
 
-
-#main loop for this game
-#主循环
+# main loop for this game
+# 主循环
 while gameing:
-    #detect some event
+    # detect some event
     for event in pygame.event.get():
-        #when somebody push the button
+        # when somebody push the button
         if event.type == KEYDOWN:
-            #and the key they push is ESC
+            # and the key they push is ESC
             if event.key == K_ESCAPE:
-                #stop game
+                # stop game
                 gameing = False
-        #and if someone click the quit button or any other opeartion
+        # and if someone click the quit button or any other opeartion
         if event.type == pygame.locals.QUIT:
-            #stop game
+            # stop game
             gameing = False
-#跟傻逼解释半天不知道他们能不能看懂
+    # 跟傻逼解释半天不知道他们能不能看懂
 
     # vogel mit jede ein mal K_UP nach oben 10
     if pygame.key.get_pressed()[pygame.locals.K_UP]:
         # 调整上升速度
-        y -= 2  # 10 ist zu Schwier ,testing....
+        y -= conf.get('K_up')  # 10 ist zu Schwier ,testing....
 
     # vogel fallen immer
     else:
         if y > 0:
-            y += 3
+            y += conf.get('Y_speed')
     # alle Wände immer nach links bewegen
     a1 -= geschwendigkeit
     a2 -= geschwendigkeit
@@ -173,5 +174,5 @@ print('Your score is:', score)
 # upload the score into database
 ls.insert_last_score(score)
 
-#quti pygame
+# quit pygame
 pygame.quit()
