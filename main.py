@@ -157,8 +157,6 @@ while gameing:
     pygame.draw.rect(screen, (32, 192, 32), rectD1)
     pygame.draw.rect(screen, (32, 192, 32), rectD2)
 
-    # Fenster aktualisieren
-    pygame.display.flip()
 
     # if Bird out screen,end game, und etwas ausdrüken
     if y > 480 or y <= 0:
@@ -166,8 +164,7 @@ while gameing:
         gameing = False
         # pygame.quit()
 
-    # set refresh rate as 60, same as normal screen refresh rate
-    clock.tick(60)
+
 
     # Bestimmen es, ob es kollidieren werden
     for i in list_tuple:
@@ -182,8 +179,14 @@ while gameing:
 
     textImage = myfont.render("score: " + str(score), True, (0, 0, 255))
     screen.blit(textImage, (10,10))
-    pygame.display.update()
-    pygame.time.delay(50)
+
+
+
+    # set refresh rate as 60, same as normal screen refresh rate
+    clock.tick(60)
+    # Fenster aktualisieren
+    pygame.display.flip()
+
 
 
 
