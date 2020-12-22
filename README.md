@@ -26,9 +26,12 @@
 * 0.1.1
     - remake main.py
 * 0.1.2
-    - Max score in scoreboard
+    - max score in scoreboard
     - ini config file
     - adjustable speed and other things on config file
+* 0.1.3
+    - add some resource
+    - modifiy the backgrund color
 
 ## Quelle:
     - https://www.jinx.com/pages/cyberpunk
