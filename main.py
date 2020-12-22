@@ -61,6 +61,14 @@ lB = random.choice(list_l)
 lC = random.choice(list_l)
 lD = random.choice(list_l)
 
+
+
+pygame.font.init()
+myfont = pygame.font.Font(None,60)
+
+
+
+
 # main loop for this game
 # 主循环
 while gameing:
@@ -168,6 +176,16 @@ while gameing:
         if a == 1:
             print('100G!! Overload!!!!')
             gameing = False
+
+
+
+
+    textImage = myfont.render("score: " + str(score), True, (0, 0, 255))
+    screen.blit(textImage, (10,10))
+    pygame.display.update()
+    pygame.time.delay(50)
+
+
 
 # Wenn end der Spielen , ausdrüken der letzt Punkte
 print('Your score is:', score)
