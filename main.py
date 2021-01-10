@@ -86,6 +86,9 @@ while gameing:
             gameing = False
     # 跟傻逼解释半天不知道他们能不能看懂
 
+    bird_img = pygame.image.load("./resource/bird2.png")  #load picture
+    bird_img = pygame.transform.smoothscale(bird_img,[46,25])   #transform the pixel into 46*25
+
     # vogel mit jede ein mal K_UP nach oben 10
     if pygame.key.get_pressed()[pygame.locals.K_UP]:
         # 调整上升速度
@@ -143,10 +146,14 @@ while gameing:
     # macht ein list, es hat alle tupel
     list_tuple = [rectA1, rectA2, rectB1, rectB2, rectC1, rectC2, rectD1, rectD2]
 
-    screen.fill((64, 64, 64))  # Dark Gray
+    # screen.fill((64, 64, 64))  # Dark Gray
+    screen.fill((187,255,255)) #blue
 
-    bird = pygame.Rect(x, y, 10, 10)  # get a bird( Quadrat)
-    pygame.draw.rect(screen, (192, 32, 32), bird)
+    bird = pygame.Rect(x, y, 46, 25)  # get a bird( Quadrat)
+    import pygame.gfxdraw
+    pygame.gfxdraw.box(screen, bird,(100,0,0,0))  #透明
+    # pygame.draw.rect(screen, (0, 0, 0), bird)
+    screen.blit(bird_img,bird) #draw bird img on rect bird
 
     pygame.draw.rect(screen, (32, 192, 32), rectA1)
     pygame.draw.rect(screen, (32, 192, 32), rectA2)
