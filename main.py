@@ -1,9 +1,9 @@
-# 给某些不懂python还要bb的傻逼看的注释
+
 # import some pakcage from pygame
 import pygame
 # import all funcktion from pygame.locals
 from pygame.locals import *
-# 傻逼太多了，解释不过来
+
 
 import read_ini
 
@@ -62,8 +62,9 @@ lC = random.choice(list_l)
 lD = random.choice(list_l)
 
 
-
+# Initialize the font module.
 pygame.font.init()
+# Create a Font object from a font file.
 myfont = pygame.font.Font(None,60)
 
 
@@ -182,8 +183,7 @@ while gameing:
             gameing = False
 
 
-
-
+    # Draw text on a new Surface object.
     textImage = myfont.render("score: " + str(score), True, (0, 0, 255))
     screen.blit(textImage, (10,10))
 
