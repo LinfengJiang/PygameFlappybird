@@ -85,15 +85,14 @@ while gameing:
         if event.type == pygame.locals.QUIT:
             # stop game
             gameing = False
-    # 跟傻逼解释半天不知道他们能不能看懂
+
 
     bird_img = pygame.image.load("./resource/bird2.png")  #load picture
     bird_img = pygame.transform.smoothscale(bird_img,[46,25])   #transform the pixel into 46*25
 
-    # vogel mit jede ein mal K_UP nach oben 10
+    # vogel mit jede ein mal K_UP nach oben 5()
     if pygame.key.get_pressed()[pygame.locals.K_UP]:
-        # 调整上升速度
-        y -= conf.get('K_up')  # 10 ist zu Schwier ,testing....
+        y -= conf.get('K_up')
 
     # vogel fallen immer
     else:
