@@ -54,11 +54,11 @@ class Button(object):
             return False
 
 
-def starting_screen():
+def Game_start():
     global spielaktiv    #引入全局变量方便后面修改
     screen.blit(bg, (0, 0))
 
-    game_title = font.render('Starting Screen', True, WHITE)
+    game_title = font.render('Flappy Bird', True, WHITE)
 
     screen.blit(game_title, (display_width // 2 - game_title.get_width() // 2, 150))
 
@@ -97,6 +97,50 @@ def starting_screen():
                 #pygame.quit()
                 spielaktiv = False
                 break
+
+
+def Game_end():
+    global score
+    screen.blit(bg, (0, 0))
+
+    game_title = font.render('you are dead', True, WHITE)
+    score_title = font.render('your score is:'+str(score), True, WHITE)
+
+    screen.blit(game_title, (display_width // 2 - game_title.get_width() // 2, 150))
+    screen.blit(score_title, (display_width // 2 - score_title.get_width() // 2, 200))
+    end_button = Button('End', WHITE, None, 400, centered_x=True)
+
+    end_button.display()
+
+    pygame.display.update()
+
+    while True:
+
+
+        if end_button.check_click(pygame.mouse.get_pos()):
+            end_button = Button('End', RED, None, 400, centered_x=True)
+        else:
+            end_button = Button('End', WHITE, None, 400, centered_x=True)
+
+
+
+        end_button.display()
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+        if pygame.mouse.get_pressed()[0]:
+            if end_button.check_click(pygame.mouse.get_pos()):
+                break
+
+
+
+
+
+
+
 
 
 screen = pygame.display.set_mode((display_width, display_height))
@@ -147,7 +191,7 @@ lB = random.choice(list_l)
 lC = random.choice(list_l)
 lD = random.choice(list_l)
 
-starting_screen()
+Game_start()
 
 # Schleife Hauptprogramm
 while spielaktiv:
@@ -254,6 +298,9 @@ while spielaktiv:
         if a == 1:
             print('100G!! Overload!!!!')
             spielaktiv = False
+
+Game_end()
+
 
 # Wenn end der Spielen , ausdrüken der letzt Punkte
 print('Your score is:', score)
