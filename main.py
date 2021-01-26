@@ -20,10 +20,145 @@ except BaseException as e:
 
 import random
 
+
+display_width = 640
+display_height = 480
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+
+bg_location = 'bg.png'
+
+
+
+
+
 # initizliation pygame
 pygame.init()
 # set resoultion
-screen = pygame.display.set_mode((640, 480))
+
+
+
+class Button(object):
+    # 输入文字，颜色，x偏移量，y偏移量，额外参数
+    def __init__(self, text, color, x=None, y=None, **kwargs):
+        self.surface = font.render(text, True, color)
+
+        self.WIDTH = self.surface.get_width()
+        self.HEIGHT = self.surface.get_height()
+
+        if 'centered_x' in kwargs and kwargs['centered_x']:   #如果有要求在x轴居中显示
+            self.x = display_width // 2 - self.WIDTH // 2
+        else:
+            self.x = x
+
+        if 'centered_y' in kwargs and kwargs['centered_y']:
+            self.y = display_height // 2 - self.HEIGHT // 2
+        else:
+            self.y = y
+
+    def display(self):
+        screen.blit(self.surface, (self.x, self.y))
+
+    def check_click(self, position):
+        x_match = position[0] > self.x and position[0] < self.x + self.WIDTH
+        y_match = position[1] > self.y and position[1] < self.y + self.HEIGHT
+
+        if x_match and y_match:
+            return True
+        else:
+            return False
+
+
+def Game_start():
+    global gameing  #引入全局变量方便后面修改
+    screen.blit(bg, (0, 0))
+
+    game_title = font.render('Flappy Bird', True, WHITE)
+
+    screen.blit(game_title, (display_width // 2 - game_title.get_width() // 2, 150))
+
+    play_button = Button('Play', RED, None, 350, centered_x=True)
+    exit_button = Button('Exit', WHITE, None, 400, centered_x=True)
+
+    play_button.display()
+    exit_button.display()
+
+    pygame.display.update()
+
+    while True:
+
+        if play_button.check_click(pygame.mouse.get_pos()):
+            play_button = Button('Play', RED, None, 350, centered_x=True)
+        else:
+            play_button = Button('Play', WHITE, None, 350, centered_x=True)
+
+        if exit_button.check_click(pygame.mouse.get_pos()):
+            exit_button = Button('Exit', RED, None, 400, centered_x=True)
+        else:
+            exit_button = Button('Exit', WHITE, None, 400, centered_x=True)
+
+        play_button.display()
+        exit_button.display()
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+        if pygame.mouse.get_pressed()[0]:
+            if play_button.check_click(pygame.mouse.get_pos()):
+                break
+            if exit_button.check_click(pygame.mouse.get_pos()):
+                #pygame.quit()
+                gameing = False
+                break
+
+
+def Game_end():
+    global score
+    screen.blit(bg, (0, 0))
+
+    game_title = font.render('you are dead', True, WHITE)
+    score_title = font.render('your score is:'+str(score), True, WHITE)
+
+    screen.blit(game_title, (display_width // 2 - game_title.get_width() // 2, 150))
+    screen.blit(score_title, (display_width // 2 - score_title.get_width() // 2, 200))
+    end_button = Button('End', WHITE, None, 400, centered_x=True)
+
+    end_button.display()
+
+    pygame.display.update()
+
+    while True:
+
+
+        if end_button.check_click(pygame.mouse.get_pos()):
+            end_button = Button('End', RED, None, 400, centered_x=True)
+        else:
+            end_button = Button('End', WHITE, None, 400, centered_x=True)
+
+
+
+        end_button.display()
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit
+        if pygame.mouse.get_pressed()[0]:
+            if end_button.check_click(pygame.mouse.get_pos()):
+                break
+
+
+
+screen = pygame.display.set_mode((display_width, display_height))
+bg = pygame.image.load(bg_location)
+font_addr = pygame.font.get_default_font()
+font = pygame.font.Font(font_addr, 36)
+
+# Titel für Fensterkopf
+pygame.display.set_caption('Flapply Bird')
 
 # 刷新率，或者叫刷新速度  refresh rate
 clock = pygame.time.Clock()
@@ -68,7 +203,7 @@ pygame.font.init()
 myfont = pygame.font.Font(None,60)
 
 
-
+Game_start()
 
 # main loop for this game
 # 主循环
@@ -165,6 +300,7 @@ while gameing:
     pygame.draw.rect(screen, (32, 192, 32), rectD2)
 
 
+
     # if Bird out screen,end game, und etwas ausdrüken
     if y > 480 or y <= 0:
         print('Try again')
@@ -178,7 +314,6 @@ while gameing:
         a = pygame.Rect.colliderect(bird, i)
         # wenn kollidieren enden game
         if a == 1:
-            print('100G!! Overload!!!!')
             gameing = False
 
 
@@ -194,7 +329,7 @@ while gameing:
     pygame.display.flip()
 
 
-
+Game_end()
 
 # Wenn end der Spielen , ausdrüken der letzt Punkte
 print('Your score is:', score)
