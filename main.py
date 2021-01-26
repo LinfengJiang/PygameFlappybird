@@ -224,6 +224,8 @@ while gameing:
 
     bird_img = pygame.image.load("./resource/bird2.png")  #load picture
     bird_img = pygame.transform.smoothscale(bird_img,[46,25])   #transform the pixel into 46*25
+    BJ_img = pygame.image.load("./resource/BJ.png")
+    BJ_img = pygame.transform.smoothscale(BJ_img, [640, 480])
 
     # vogel mit jede ein mal K_UP nach oben 5()
     if pygame.key.get_pressed()[pygame.locals.K_UP]:
@@ -281,23 +283,34 @@ while gameing:
     # macht ein list, es hat alle tupel
     list_tuple = [rectA1, rectA2, rectB1, rectB2, rectC1, rectC2, rectD1, rectD2]
 
-    # screen.fill((64, 64, 64))  # Dark Gray
-    screen.fill((187,255,255)) #blue
+    screen.fill((64, 64, 64))  # Dark Gray
+    screen.blit(BJ_img,(0,0))
 
     bird = pygame.Rect(x, y, 46, 25)  # get a bird( Quadrat)
-    import pygame.gfxdraw
-    pygame.gfxdraw.box(screen, bird,(100,0,0,0))  #透明
-    # pygame.draw.rect(screen, (0, 0, 0), bird)
     screen.blit(bird_img,bird) #draw bird img on rect bird
 
-    pygame.draw.rect(screen, (32, 192, 32), rectA1)
-    pygame.draw.rect(screen, (32, 192, 32), rectA2)
-    pygame.draw.rect(screen, (32, 192, 32), rectB1)
-    pygame.draw.rect(screen, (32, 192, 32), rectB2)
-    pygame.draw.rect(screen, (32, 192, 32), rectC1)
-    pygame.draw.rect(screen, (32, 192, 32), rectC2)
-    pygame.draw.rect(screen, (32, 192, 32), rectD1)
-    pygame.draw.rect(screen, (32, 192, 32), rectD2)
+
+    wand_img = pygame.image.load("./resource/wand.png")  #load picture
+    wandA1_img = pygame.transform.smoothscale(wand_img, [50, lA])
+    wandA2_img = pygame.transform.smoothscale(wand_img, [50, 380 - lA])
+    wandB1_img = pygame.transform.smoothscale(wand_img, [50, lB])
+    wandB2_img = pygame.transform.smoothscale(wand_img, [50, 380 - lB])
+    wandC1_img = pygame.transform.smoothscale(wand_img, [50, lC])
+    wandC2_img = pygame.transform.smoothscale(wand_img, [50, 380 - lC])
+    wandD1_img = pygame.transform.smoothscale(wand_img, [50, lD])
+    wandD2_img = pygame.transform.smoothscale(wand_img, [50, 380 - lD])
+
+    screen.blit(wandA1_img, rectA1)
+    screen.blit(wandA2_img, rectA2)
+    screen.blit(wandB1_img, rectB1)
+    screen.blit(wandB2_img, rectB2)
+    screen.blit(wandC1_img, rectC1)
+    screen.blit(wandC2_img, rectC2)
+    screen.blit(wandD1_img, rectD1)
+    screen.blit(wandD2_img, rectD2)
+
+
+
 
 
 
