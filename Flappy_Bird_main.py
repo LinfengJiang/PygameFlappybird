@@ -55,7 +55,7 @@ class Button(object):
 
 
 def Game_start():
-    global spielaktiv    #引入全局变量方便后面修改
+    global spielaktiv
     screen.blit(bg, (0, 0))
 
     game_title = font.render('Flappy Bird', True, WHITE)

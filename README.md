@@ -32,6 +32,9 @@
 * 0.1.3
     - add some resource
     - modifiy the backgrund color
+    
+* 0.2.0
+    - add Pause screen
 
 ## Quelle:
     - https://www.jinx.com/pages/cyberpunk
