@@ -4,6 +4,8 @@ import pygame
 # import all funcktion from pygame.locals
 from pygame.locals import *
 
+import time
+
 
 import read_ini
 
@@ -71,19 +73,24 @@ class Button(object):
 
 def Game_start():     #start screen
     global gameing  #引入全局变量方便后面修改
-    screen.blit(bg, (0, 0))   #setting a sceen
+    screen.blit(start_bgp, (0, 0))   #setting a sceen
 
     game_title = font.render('Flappy Bird', True, WHITE)
 
     screen.blit(game_title, (display_width // 2 - game_title.get_width() // 2, 150))
+
+    pygame.mixer.init()
+    pygame.mixer.music.load('./resource/dj_remix_tari_ubur_ubur_bikin_enak_untuk_goyang.mp3')
+    pygame.mixer.music.play(-1,0)   #start from 0s and loop
 
     play_button = Button('Play', RED, None, 350, centered_x=True)
     exit_button = Button('Exit', WHITE, None, 400, centered_x=True)
 
     play_button.display()
     exit_button.display()
-
     pygame.display.update()
+
+    time.sleep(0.5)  #sleep 1s to avoid when restart game, start screen will be jumped
 
     while True:
 
@@ -107,10 +114,11 @@ def Game_start():     #start screen
                 raise SystemExit
         if pygame.mouse.get_pressed()[0]:
             if play_button.check_click(pygame.mouse.get_pos()):
+                pygame.mixer.music.stop()
                 break
             if exit_button.check_click(pygame.mouse.get_pos()):
-                #pygame.quit()
                 gameing = False
+                pygame.quit()
                 break
 
 
@@ -205,7 +213,11 @@ def Game_pause():
 
 
 screen = pygame.display.set_mode((display_width, display_height))
+
 bg = pygame.image.load(bg_location)
+start_bgp = pygame.image.load('./resource/indhome.jpg')
+start_bgp = pygame.transform.scale(start_bgp,(640,480))
+
 font_addr = pygame.font.get_default_font()
 font = pygame.font.Font(font_addr, 36)
 
@@ -387,10 +399,10 @@ while 1:
             # wenn kollidieren enden game
             if a == 1:
                 gameing = False
+        textImage = myfont.render("score: " + str(score), True, (0, 0, 255))
 
 
         # Draw text on a new Surface object.
-        textImage = myfont.render("score: " + str(score), True, (0, 0, 255))
         screen.blit(textImage, (10,10))
 
 
