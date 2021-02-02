@@ -25,11 +25,11 @@ import random
 
 display_width = 640
 display_height = 480
+black = ( 0 , 0 , 0 )
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
-
-bg_location = 'bg.png'
-
+bg = pygame.image.load("bg.png")
+BJ_img = pygame.image.load("./resource/BJ.png")
 
 
 
@@ -73,18 +73,18 @@ class Button(object):
 
 def Game_start():     #start screen
     global gameing  #引入全局变量方便后面修改
-    screen.blit(start_bgp, (0, 0))   #setting a sceen
+    screen.blit(BJ_img, (0, 0))   #setting a sceen
 
-    game_title = font.render('Flappy Bird', True, WHITE)
+    game_title = font.render('Flappy Bird', True, black)
 
     screen.blit(game_title, (display_width // 2 - game_title.get_width() // 2, 150))
 
-    pygame.mixer.init()
-    pygame.mixer.music.load('./resource/dj_remix_tari_ubur_ubur_bikin_enak_untuk_goyang.mp3')
-    pygame.mixer.music.play(-1,0)   #start from 0s and loop
+    # pygame.mixer.init()
+    # pygame.mixer.music.load('./resource/dj_remix_tari_ubur_ubur_bikin_enak_untuk_goyang.mp3')
+    # pygame.mixer.music.play(-1,0)   #start from 0s and loop
 
     play_button = Button('Play', RED, None, 350, centered_x=True)
-    exit_button = Button('Exit', WHITE, None, 400, centered_x=True)
+    exit_button = Button('Exit', black, None, 400, centered_x=True)
 
     play_button.display()
     exit_button.display()
@@ -97,12 +97,12 @@ def Game_start():     #start screen
         if play_button.check_click(pygame.mouse.get_pos()):
             play_button = Button('Play', RED, None, 350, centered_x=True)
         else:
-            play_button = Button('Play', WHITE, None, 350, centered_x=True)
+            play_button = Button('Play', black, None, 350, centered_x=True)
 
         if exit_button.check_click(pygame.mouse.get_pos()):
             exit_button = Button('Exit', RED, None, 400, centered_x=True)
         else:
-            exit_button = Button('Exit', WHITE, None, 400, centered_x=True)
+            exit_button = Button('Exit', black, None, 400, centered_x=True)
 
         play_button.display()
         exit_button.display()
@@ -142,12 +142,12 @@ def Game_end():    #end screen
     while True:
 
         if end_button.check_click(pygame.mouse.get_pos()):
-            end_button = Button('End', RED, None, 350, centered_x=True)
+            end_button = Button('End', black, None, 350, centered_x=True)
         else:
             end_button = Button('End', WHITE, None, 350, centered_x=True)
 
         if restart_button.check_click(pygame.mouse.get_pos()):
-            restart_button = Button('Restart Game', RED, None, 400, centered_x=True)
+            restart_button = Button('Restart Game', black, None, 400, centered_x=True)
         else:
             restart_button = Button('Restart Game', WHITE, None, 400, centered_x=True)
 
@@ -213,10 +213,8 @@ def Game_pause():
 # Button(object) Quelle: https://zhuanlan.zhihu.com/p/78637310
 
 screen = pygame.display.set_mode((display_width, display_height))
+BJ = pygame.image.load("./resource/BJ.png")
 
-bg = pygame.image.load(bg_location)
-start_bgp = pygame.image.load('./resource/indhome.jpg')
-start_bgp = pygame.transform.scale(start_bgp,(640,480))
 
 font_addr = pygame.font.get_default_font()
 font = pygame.font.Font(font_addr, 36)
