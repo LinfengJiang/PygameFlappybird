@@ -39,7 +39,7 @@ pygame.init()
 # set resoultion
 
 
-
+# Button(object) Quelle: https://zhuanlan.zhihu.com/p/78637310
 class Button(object):
     # 输入文字，颜色，x偏移量，y偏移量，额外参数
     def __init__(self, text, color, x=None, y=None, **kwargs):
@@ -175,28 +175,28 @@ def Game_pause():
 
     screen.blit(game_title, (display_width // 2 - game_title.get_width() // 2, 150))
 
-    play_button = Button('Resume', RED, None, 350, centered_x=True)
-    exit_button = Button('Quit Game', WHITE, None, 400, centered_x=True)
+    Resume_button = Button('Resume', RED, None, 350, centered_x=True)
+    Quit_button = Button('Quit Game', WHITE, None, 400, centered_x=True)
 
-    play_button.display()
-    exit_button.display()
+    Resume_button.display()
+    Quit_button.display()
 
     pygame.display.update()
 
     while True:
 
-        if play_button.check_click(pygame.mouse.get_pos()):
-            play_button = Button('Resume', RED, None, 350, centered_x=True)
+        if Resume_button.check_click(pygame.mouse.get_pos()):
+            Resume_button = Button('Resume', RED, None, 350, centered_x=True)
         else:
-            play_button = Button('Resume', WHITE, None, 350, centered_x=True)
+            Resume_button = Button('Resume', WHITE, None, 350, centered_x=True)
 
-        if exit_button.check_click(pygame.mouse.get_pos()):
-            exit_button = Button('Quit Game', RED, None, 400, centered_x=True)
+        if Quit_button.check_click(pygame.mouse.get_pos()):
+            Quit_button = Button('Quit Game', RED, None, 400, centered_x=True)
         else:
-            exit_button = Button('Quit Game', WHITE, None, 400, centered_x=True)
+            Quit_button = Button('Quit Game', WHITE, None, 400, centered_x=True)
 
-        play_button.display()
-        exit_button.display()
+        Resume_button.display()
+        Quit_button.display()
         pygame.display.update()
 
         for event in pygame.event.get():
@@ -204,13 +204,13 @@ def Game_pause():
                 pygame.quit()
                 raise SystemExit
         if pygame.mouse.get_pressed()[0]:
-            if play_button.check_click(pygame.mouse.get_pos()):
+            if Resume_button.check_click(pygame.mouse.get_pos()):
                 break
-            if exit_button.check_click(pygame.mouse.get_pos()):
+            if Quit_button.check_click(pygame.mouse.get_pos()):
                 #pygame.quit()
                 gameing = False
                 break
-
+# Button(object) Quelle: https://zhuanlan.zhihu.com/p/78637310
 
 screen = pygame.display.set_mode((display_width, display_height))
 
@@ -272,6 +272,7 @@ while 1:
     pygame.font.init()
     # Create a Font object from a font file.
     myfont = pygame.font.Font(None,60)
+
 
     Game_start()
     gameing = True
