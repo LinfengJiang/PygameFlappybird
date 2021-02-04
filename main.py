@@ -73,6 +73,7 @@ class Button(object):
 
 def Game_start():     #start screen
     global gameing  #引入全局变量方便后面修改
+    global AGAIN
     screen.blit(BJ_img, (0, 0))   #setting a sceen
 
     game_title = font.render('Flappy Bird', True, black)
@@ -117,11 +118,13 @@ def Game_start():     #start screen
                 break
             if exit_button.check_click(pygame.mouse.get_pos()):
                 gameing = False
+                AGAIN = False
                 break
 
 
 def Game_end():    #end screen
     global score
+    global AGAIN
     screen.blit(bg, (0, 0))
 
     game_title = font.render('you are dead', True, WHITE)
@@ -161,11 +164,13 @@ def Game_end():    #end screen
                 raise SystemExit
         if pygame.mouse.get_pressed()[0]:
             if end_button.check_click(pygame.mouse.get_pos()):
+                AGAIN=False
                 break
             elif restart_button.check_click(pygame.mouse.get_pos()):
-                return 1
+                break
 
 def Game_pause():
+    global AGAIN
     global gameing  #引入全局变量方便后面修改
     screen.blit(bg, (0, 0))
 
@@ -205,7 +210,7 @@ def Game_pause():
             if Resume_button.check_click(pygame.mouse.get_pos()):
                 break
             if Quit_button.check_click(pygame.mouse.get_pos()):
-                #pygame.quit()
+                AGAIN = False
                 gameing = False
                 break
 # Button(object) Quelle: https://zhuanlan.zhihu.com/p/78637310
@@ -223,17 +228,17 @@ pygame.display.set_caption('Flapply Bird')
 # 刷新率，或者叫刷新速度  refresh rate
 clock = pygame.time.Clock()
 
+AGAIN = True
 
 
 
 
-
-while 1:
+while AGAIN:
 
     # set this variablen to mark when game is runing or not
 
 
-    end_game = 0
+
 
     # Wand Geschwendigkeit
     # 值必须能被50整除
@@ -388,6 +393,7 @@ while 1:
         if y > 480 or y <= 0:
             print('Try again')
             gameing = False
+            Game_end()
             # pygame.quit()
 
 
@@ -398,6 +404,7 @@ while 1:
             # wenn kollidieren enden game
             if a == 1:
                 gameing = False
+                Game_end()
         textImage = myfont.render("score: " + str(score), True, (0, 0, 255))
 
 
@@ -416,12 +423,6 @@ while 1:
     # upload the score into database
     ls.insert_last_score(score)
 
-    end_game = Game_end()
-    if end_game == 1:
-        #gameing = True
-        continue
-    else:
-        break
 
 # quit pygame
 pygame.quit()
