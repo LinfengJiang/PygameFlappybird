@@ -114,11 +114,9 @@ def Game_start():     #start screen
                 raise SystemExit
         if pygame.mouse.get_pressed()[0]:
             if play_button.check_click(pygame.mouse.get_pos()):
-                pygame.mixer.music.stop()
                 break
             if exit_button.check_click(pygame.mouse.get_pos()):
                 gameing = False
-                pygame.quit()
                 break
 
 
@@ -273,9 +271,9 @@ while 1:
     # Create a Font object from a font file.
     myfont = pygame.font.Font(None,60)
 
-
-    Game_start()
     gameing = True
+    Game_start()
+
 
     # main loop for this game
     # 主循环
@@ -355,7 +353,7 @@ while 1:
         # macht ein list, es hat alle tupel
         list_tuple = [rectA1, rectA2, rectB1, rectB2, rectC1, rectC2, rectD1, rectD2]
 
-        screen.fill((64, 64, 64))  # Dark Gray
+
         screen.blit(BJ_img,(0,0))
 
         bird = pygame.Rect(x, y, 46, 25)  # get a bird( Quadrat)
