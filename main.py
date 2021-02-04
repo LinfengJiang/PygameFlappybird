@@ -228,10 +228,12 @@ clock = pygame.time.Clock()
 
 
 
+
+
 while 1:
 
     # set this variablen to mark when game is runing or not
-    #gameing = True
+
 
     end_game = 0
 
@@ -422,7 +424,6 @@ while 1:
         continue
     else:
         break
-
 
 # quit pygame
 pygame.quit()
