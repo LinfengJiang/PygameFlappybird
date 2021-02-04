@@ -42,12 +42,15 @@ pygame.init()
 # Button(object) Quelle: https://zhuanlan.zhihu.com/p/78637310
 class Button(object):
     # 输入文字，颜色，x偏移量，y偏移量，额外参数
+    #need a button name, color and position as parameter
     def __init__(self, text, color, x=None, y=None, **kwargs):
+        #define a surface
         self.surface = font.render(text, True, color)
-
+        #set height and width
         self.WIDTH = self.surface.get_width()
         self.HEIGHT = self.surface.get_height()
 
+        #when a centered parameter became, set the button in position
         if 'centered_x' in kwargs and kwargs['centered_x']:   #如果有要求在x轴居中显示
             self.x = display_width // 2 - self.WIDTH // 2
         else:
@@ -58,10 +61,12 @@ class Button(object):
         else:
             self.y = y
 
+    #show the buttion
     def display(self):
-        screen.blit(self.surface, (self.x, self.y))
+        screen.blit(self.surface, (self.x, self.y)) #button surface and coordinate
 
     def check_click(self, position):
+        #compare if mouse postion is on the button area
         x_match = position[0] > self.x and position[0] < self.x + self.WIDTH
         y_match = position[1] > self.y and position[1] < self.y + self.HEIGHT
 
@@ -72,21 +77,23 @@ class Button(object):
 
 
 def Game_start():     #start screen
+    #set two global variablen to modify instead of useing return function
     global gameing  #引入全局变量方便后面修改
     global AGAIN
     screen.blit(BJ_img, (0, 0))   #setting a sceen
 
-    game_title = font.render('Flappy Bird', True, black)
-
-    screen.blit(game_title, (display_width // 2 - game_title.get_width() // 2, 150))
+    game_title = font.render('Flappy Bird', True, black) # set parameter for the title
+    screen.blit(game_title, (display_width // 2 - game_title.get_width() // 2, 150))  #show title
 
     # pygame.mixer.init()
     # pygame.mixer.music.load('./resource/dj_remix_tari_ubur_ubur_bikin_enak_untuk_goyang.mp3')
     # pygame.mixer.music.play(-1,0)   #start from 0s and loop
 
+    #create two buttons
     play_button = Button('Play', RED, None, 350, centered_x=True)
     exit_button = Button('Exit', black, None, 400, centered_x=True)
 
+    #show the button and refresh the game
     play_button.display()
     exit_button.display()
     pygame.display.update()
@@ -95,6 +102,7 @@ def Game_start():     #start screen
 
     while True:
 
+        #if mouse moved onto the button area ,then change the button color
         if play_button.check_click(pygame.mouse.get_pos()):
             play_button = Button('Play', RED, None, 350, centered_x=True)
         else:
@@ -109,20 +117,26 @@ def Game_start():     #start screen
         exit_button.display()
         pygame.display.update()
 
+        #some event function
         for event in pygame.event.get():
+            #if become quit, then quit game
             if event.type == pygame.QUIT:
                 pygame.quit()
                 raise SystemExit
         if pygame.mouse.get_pressed()[0]:
+            #if mouse has bin clicked
             if play_button.check_click(pygame.mouse.get_pos()):
+                #clicked play,resume
                 break
             if exit_button.check_click(pygame.mouse.get_pos()):
+                #clicked exit, exit game
                 gameing = False
                 AGAIN = False
                 break
 
 
 def Game_end():    #end screen
+    #amost same as start screen
     global score
     global AGAIN
     screen.blit(bg, (0, 0))
@@ -170,6 +184,7 @@ def Game_end():    #end screen
                 break
 
 def Game_pause():
+    #also same as start screen
     global AGAIN
     global gameing  #引入全局变量方便后面修改
     screen.blit(bg, (0, 0))
@@ -215,10 +230,12 @@ def Game_pause():
                 break
 # Button(object) Quelle: https://zhuanlan.zhihu.com/p/78637310
 
+#set resolution
 screen = pygame.display.set_mode((display_width, display_height))
+#import background picture
 BJ = pygame.image.load("./resource/BJ.png")
 
-
+#set font type and size
 font_addr = pygame.font.get_default_font()
 font = pygame.font.Font(font_addr, 36)
 
