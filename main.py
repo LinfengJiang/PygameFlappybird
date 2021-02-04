@@ -28,7 +28,7 @@ display_height = 480
 black = ( 0 , 0 , 0 )
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
-bg = pygame.image.load("bg.png")
+bg = pygame.image.load("./resource/bg.png")
 BJ_img = pygame.image.load("./resource/BJ.png")
 
 
