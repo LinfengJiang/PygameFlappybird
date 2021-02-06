@@ -1,3 +1,5 @@
+import os
+import sys
 
 # import some pakcage from pygame
 import pygame
@@ -22,14 +24,16 @@ except BaseException as e:
 
 import random
 
+base_path = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
 
 display_width = 640
 display_height = 480
 black = ( 0 , 0 , 0 )
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
-bg = pygame.image.load("./resource/bg.png")
-BJ_img = pygame.image.load("./resource/BJ.png")
+#bg = pygame.image.load("./resource/bg.png")
+bg = pygame.image.load(os.path.join(base_path,"./resource/bg.png"))
+BJ_img = pygame.image.load(os.path.join(base_path,"./resource/BJ.png"))
 
 
 
@@ -233,8 +237,7 @@ def Game_pause():
 #set resolution
 screen = pygame.display.set_mode((display_width, display_height))
 #import background picture
-BJ = pygame.image.load("./resource/BJ.png")
-
+BJ = pygame.image.load(os.path.join(base_path,"./resource/BJ.png"))
 #set font type and size
 font_addr = pygame.font.get_default_font()
 font = pygame.font.Font(font_addr, 36)
@@ -314,9 +317,9 @@ while AGAIN:
                 gameing = False
 
 
-        bird_img = pygame.image.load("./resource/bird2.png")  #load picture
+        bird_img = pygame.image.load(os.path.join(base_path,"./resource/bird2.png"))  #load picture
         bird_img = pygame.transform.smoothscale(bird_img,[46,25])   #transform the pixel into 46*25
-        BJ_img = pygame.image.load("./resource/BJ.png")
+        BJ_img = pygame.image.load(os.path.join(base_path,"./resource/BJ.png"))
         BJ_img = pygame.transform.smoothscale(BJ_img, [640, 480])
 
         # vogel mit jede ein mal K_UP nach oben 5()
@@ -382,7 +385,7 @@ while AGAIN:
         screen.blit(bird_img,bird) #draw bird img on rect bird
 
 
-        wand_img = pygame.image.load("./resource/wand.png")  #load picture
+        wand_img = pygame.image.load(os.path.join(base_path,"./resource/wand.png"))  #load picture
         wandA1_img = pygame.transform.smoothscale(wand_img, [50, lA])
         wandA2_img = pygame.transform.smoothscale(wand_img, [50, 380 - lA])
         wandB1_img = pygame.transform.smoothscale(wand_img, [50, lB])

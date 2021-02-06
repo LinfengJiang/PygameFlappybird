@@ -1,3 +1,5 @@
 - collision in main game
 - register
 - scoreboard
+-pack
+--pyinstaller -F -i ./resource/icon.ico main.py -p read_ini.py -p ./Mulitplayer/database.py -p ./Mulitplayer/high_score.py -p ./Mulitplayer/IDgenerate.py  -p ./Mulitplayer/last_score.py -p ./Mulitplayer/register.py
